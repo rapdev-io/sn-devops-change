@@ -20,9 +20,15 @@ const axios = require('axios');
 	    core.setFailed(`exception parsing github context ${e}`);
 	}
 
+	html_url = githubContext.event.repository.html_url;
+
 	let changeBody = {
 		'callbackURL': callbackUrl,
 		'orchestrationTaskURL': `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}rapdev-package-${githubContext.run_number}`,
+		'orchestrationTaskDetails': {
+			'triggerType': 'upstream',
+			'upstreamTaskExecutionURL': html_url
+		    }
 	}
 
 	let changePayload;
