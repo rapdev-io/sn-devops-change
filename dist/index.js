@@ -3138,6 +3138,8 @@ const axios = __nccwpck_require__(126);
 	}
 
 	let changePayload;
+
+	core.debug("changePayload " + JSON.stringify(changePayload));
 	try {
 		changePayload = await axios.post(sncChangeUrl, changeBody, defaultHeaders);
 	} catch (e) {
