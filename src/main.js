@@ -10,7 +10,7 @@ const axios = require('axios');
 
 	const sncChangeUrl = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/devops/orchestration/changeControl?toolId=${toolId}&toolType=github`;
 
-	const callbackUrl = core.getInput('callback-url', { required: true });
+	const callbackUrl = core.getInput('callback', { required: true });
 
 	let githubContext = core.getInput('context-github', { required: true })
 
