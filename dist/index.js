@@ -3136,10 +3136,10 @@ const axios = __nccwpck_require__(126);
 
 	let changeBody = {
 		'callbackURL': callbackUrl,
-		'orchestrationTaskURL': `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}rapdev-package-${githubContext.run_number}`,
+		'orchestrationTaskURL': `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
 		'orchestrationTaskDetails': {
 			'triggerType': 'upstream',
-			'upstreamTaskExecutionURL': html_url
+			'upstreamTaskExecutionURL': `${html_url}/actions/runs/${githubContext.run_id}`
 		    }
 	}
 
