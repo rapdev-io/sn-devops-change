@@ -3132,7 +3132,8 @@ const axios = __nccwpck_require__(126);
 	    core.setFailed(`exception parsing github context ${e}`);
 	}
 
-	html_url = githubContext.event.repository.html_url;
+	let html_url = githubContext.event.repository.html_url;
+	let orchestrationTaskUrl = githubContext.workflow.trim().replace(" ", "+")
 
 	let changeBody = {
 		'callbackURL': callbackUrl,
