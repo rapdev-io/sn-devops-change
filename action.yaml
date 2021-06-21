@@ -1,0 +1,27 @@
+name: 'ServiceNow DevOps Change'
+description: 'Register Job Artifacts in ServiceNow Devops'
+inputs:
+  devops-integration-user-name:
+    description: 'Devops Integration User Name'
+    required: true
+  devops-integration-user-pass:
+    description: 'Devops Integration User Pass'
+    required: true
+  instance-name: 
+    description: 'ServiceNow Instance Name (e.g.: rapdevio)'
+    required: true
+  state:
+    description: 'Orchestration Task State'
+    required: true
+  tool-id:
+    description: 'Orchestration tool id'
+    required: true
+  context-github:
+    description: 'Github context'
+    required: true
+  callback:
+    description: 'callback url'
+    required: true
+runs: 
+  using: 'node12'
+  main: 'dist/index.js'
