@@ -3137,7 +3137,7 @@ const axios = __nccwpck_require__(126);
 
 	let changeBody = {
 		'callbackURL': callbackUrl,
-		'orchestrationTaskURL': `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
+		'orchestrationTaskURL': `${html_url}/actions/?query=workflow:"${orchestrationTaskUrl}"`,
 		'orchestrationTaskDetails': {
 			'triggerType': 'upstream',
 			'upstreamTaskExecutionURL': `${html_url}/actions/runs/${githubContext.run_id}`
