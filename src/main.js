@@ -27,9 +27,9 @@ const axios = require('axios');
 
 	let changePayload;
 
-	core.debug("changePayload " + JSON.stringify(changePayload));
-	core.info("changePayload " + JSON.stringify(changePayload));
-	console.log("still testing changePayload " + JSON.stringify(changePayload));
+	core.debug("changePayload " + JSON.stringify(changeBody));
+	core.info("changePayload " + JSON.stringify(changeBody));
+	console.log("still testing changePayload " + JSON.stringify(changeBody));
 	try {
 		changePayload = await axios.post(sncChangeUrl, changeBody, defaultHeaders);
 	} catch (e) {
