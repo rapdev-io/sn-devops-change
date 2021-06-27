@@ -27,7 +27,7 @@ const axios = require('axios');
 
 	let changeBody = {
 		'callbackURL': callbackUrl,
-		'orchestrationTaskURL': `${html_url}/actions/?query=workflow:"${orchestrationTaskUrl}/${githubContext.job}"`,
+		'orchestrationTaskURL': `${html_url}/actions/workflows/${githubContext.workflow}.yml?job=${githubContext.job}`,
 		'orchestrationTaskDetails': {
 			'triggerType': 'upstream',
 		    }
