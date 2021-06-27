@@ -3146,7 +3146,7 @@ const axios = __nccwpck_require__(126);
 	}
 
 	if (upstreamTaskUrl) {
-		changeBody.orchestrationTaskDetails.upstreamTaskUrl = upstreamTaskUrl;
+		changeBody.orchestrationTaskDetails.upstreamTaskExecutionURL = upstreamTaskUrl;
 	}
 
 	let changePayload;

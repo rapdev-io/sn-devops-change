@@ -34,7 +34,7 @@ const axios = require('axios');
 	}
 
 	if (upstreamTaskUrl) {
-		changeBody.orchestrationTaskDetails.upstreamTaskUrl = upstreamTaskUrl;
+		changeBody.orchestrationTaskDetails.upstreamTaskExecutionURL = upstreamTaskUrl;
 	}
 
 	let changePayload;
