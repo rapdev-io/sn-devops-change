@@ -3135,13 +3135,18 @@ const axios = __nccwpck_require__(126);
 	let html_url = githubContext.event.repository.html_url;
 	let orchestrationTaskUrl = githubContext.workflow.trim().replace(" ", "+")
 
+	let upstreamTaskUrl = core.getInput('upstream-task-url');
+
 	let changeBody = {
 		'callbackURL': callbackUrl,
-		'orchestrationTaskURL': `${html_url}/actions/?query=workflow:"${orchestrationTaskUrl}"`,
+		'orchestrationTaskURL': `${html_url}/actions/?query=workflow:"${orchestrationTaskUrl}/${githubContext.job}"`,
 		'orchestrationTaskDetails': {
 			'triggerType': 'upstream',
-			'upstreamTaskExecutionURL': `${html_url}/actions/runs/${githubContext.run_id}`
 		    }
+	}
+
+	if (upstreamTaskUrl) {
+		changeBody.orchestrationTaskDetails.upstreamTaskUrl = upstreamTaskUrl;
 	}
 
 	let changePayload;

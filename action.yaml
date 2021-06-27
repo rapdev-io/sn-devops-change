@@ -22,6 +22,8 @@ inputs:
   callback:
     description: 'callback url'
     required: true
+  upstream-task-url:
+    description: 'upstream task url'
 runs: 
   using: 'node12'
   main: 'dist/index.js'
