@@ -24,6 +24,7 @@ inputs:
     required: true
   upstream-task-url:
     description: 'upstream task url'
+    required: false
 branding:
   icon: 'arrow-right-circle'
   color: 'blue'
