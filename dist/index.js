@@ -3487,7 +3487,9 @@ const axios = __nccwpck_require__(56);
 	const callbackUrl = core.getInput('callback', { required: true });
 
 	let githubContext = core.getInput('context-github', { required: true })
+	let jobContext = core.getInput('context-job', { required: true })
 	console.log("githubContext " + githubContext);
+	console.log("jobContext " + jobContext);
 	try {
 	    githubContext = JSON.parse(githubContext);
 	} catch (e) {
