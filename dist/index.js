@@ -3511,13 +3511,13 @@ const axios = __nccwpck_require__(56);
 		changeBody.orchestrationTaskDetails.upstreamTaskExecutionURL = upstreamTaskUrl;
 	}
 
-	let changePayload;
+	let response;
 
-	core.debug("changePayload " + JSON.stringify(changeBody));
 	core.info("changePayload " + JSON.stringify(changeBody));
-	console.log("still testing changePayload " + JSON.stringify(changeBody));
+	
 	try {
-		changePayload = await axios.post(sncChangeUrl, changeBody, defaultHeaders);
+		response = await axios.post(sncChangeUrl, changeBody, defaultHeaders);
+		console.log("ServiceNow Status: " + response.status + "; Response: " + JSON.stringify(response.data));
 	} catch (e) {
 		changeBody = JSON.stringify(changeBody);
 		core.setFailed(`failed to create artifact package ${e} \nPayload is ${changeBody}`)
