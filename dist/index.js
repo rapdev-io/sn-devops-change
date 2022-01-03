@@ -3482,35 +3482,34 @@ const axios = __nccwpck_require__(56);
 	const pass = core.getInput('devops-integration-user-pass', { required: true });
 	const defaultHeaders = { 'Content-Type': 'application/json' };
 
-	const sncChangeUrl = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/devops/orchestration/changeControl?toolId=${toolId}&toolType=github`;
+	const sncChangeUrl = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/devops/orchestration/changeControl?toolId=${toolId}`;
 
 	const callbackUrl = core.getInput('callback', { required: true });
+	let callbackParams = core.getInput('callback-params', { required: false });
+
+	if(callbackParams) {
+		try {
+			callbackParams = JSON.parse(callbackParams);
+		} catch (e) {
+			core.setFailed(`exception parsing callbackParams ${e}`);
+		}
+	}
+	else {
+		callbackParams = {};
+	}
 
 	let githubContext = core.getInput('context-github', { required: true })
-	let jobContext = core.getInput('context-job', { required: true })
-	console.log("githubContext " + githubContext);
-	console.log("jobContext " + jobContext);
+
 	try {
 	    githubContext = JSON.parse(githubContext);
 	} catch (e) {
 	    core.setFailed(`exception parsing github context ${e}`);
 	}
 
-	let html_url = githubContext.event.repository.html_url;
-	let orchestrationTaskUrl = githubContext.workflow.trim().replace(" ", "+")
-
-	let upstreamTaskUrl = core.getInput('upstream-task-url');
-
 	let changeBody = {
 		'callbackURL': callbackUrl,
-		'orchestrationTaskURL': `${html_url}/actions/workflows/${githubContext.workflow}.yml?job=${githubContext.job}`,
-		'orchestrationTaskDetails': {
-			'triggerType': 'upstream',
-		    }
-	}
-
-	if (upstreamTaskUrl) {
-		changeBody.orchestrationTaskDetails.upstreamTaskExecutionURL = upstreamTaskUrl;
+		'callbackParams': callbackParams,
+		'githubContext': githubContext
 	}
 
 	let response;
