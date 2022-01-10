@@ -10,21 +10,21 @@ inputs:
   instance-name: 
     description: 'ServiceNow Instance Name (e.g.: rapdevio)'
     required: true
-  state:
-    description: 'Orchestration Task State'
-    required: true
   tool-id:
     description: 'Orchestration tool id'
     required: true
   context-github:
     description: 'Github context'
     required: true
-  callback:
-    description: 'callback url'
+  callback-repo:
+    description: 'Callback repo'
     required: true
-  upstream-task-url:
-    description: 'upstream task url'
-    required: false
+  callback-pipeline-id:
+    description: 'Callback pipeline ID'
+    required: true
+  callback-params:
+    description: 'Callback params'
+    required: true
 branding:
   icon: 'arrow-right-circle'
   color: 'blue'
