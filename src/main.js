@@ -10,7 +10,8 @@ const axios = require('axios');
 
 	const sncChangeUrl = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/devops/orchestration/changeControl?toolId=${toolId}`;
 
-	const callbackUrl = core.getInput('callback', { required: true });
+	const callbackRepo = core.getInput('callback-repo', { required: true });
+	const callbackPipelineId = core.getInput('callback-pipeline-id', { required: true });
 	let callbackParamsString = core.getInput('callback-params', { required: true });
 	let callbackParams = {};
 
@@ -35,7 +36,8 @@ const axios = require('axios');
 	}
 
 	let changeBody = {
-		'callbackURL': callbackUrl,
+		'callbackRepo': callbackRepo,
+		'callbackPipelineId': callbackPipelineId,
 		'callbackParams': callbackParams,
 		'githubContext': githubContext
 	}

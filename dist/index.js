@@ -3484,7 +3484,8 @@ const axios = __nccwpck_require__(56);
 
 	const sncChangeUrl = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/devops/orchestration/changeControl?toolId=${toolId}`;
 
-	const callbackUrl = core.getInput('callback', { required: true });
+	const callbackRepo = core.getInput('callback-repo', { required: true });
+	const callbackPipelineId = core.getInput('callback-pipeline-id', { required: true });
 	let callbackParamsString = core.getInput('callback-params', { required: true });
 	let callbackParams = {};
 
@@ -3509,7 +3510,8 @@ const axios = __nccwpck_require__(56);
 	}
 
 	let changeBody = {
-		'callbackURL': callbackUrl,
+		'callbackRepo': callbackRepo,
+		'callbackPipelineId': callbackPipelineId,
 		'callbackParams': callbackParams,
 		'githubContext': githubContext
 	}
