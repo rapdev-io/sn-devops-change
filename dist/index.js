@@ -3485,18 +3485,20 @@ const axios = __nccwpck_require__(56);
 	const sncChangeUrl = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/devops/orchestration/changeControl?toolId=${toolId}`;
 
 	const callbackUrl = core.getInput('callback', { required: true });
-	let callbackParams = core.getInput('callback-params', { required: false });
+	let callbackParamsString = core.getInput('callback-params', { required: true });
+	let callbackParams = {};
 
-	if(callbackParams) {
-		try {
-			callbackParams = JSON.parse(callbackParams);
-		} catch (e) {
-			core.setFailed(`exception parsing callbackParams ${e}`);
-		}
+	
+	try {
+		callbackParams = JSON.parse(callbackParamsString);
+	} catch (e) {
+		core.setFailed(`there is no ref defined in callback-params: ${callbackParamsString}`);
 	}
-	else {
-		callbackParams = {};
+
+	if(!callbackParams.ref) {
+		core.setFailed(`exception parsing callbackParams ${e}`);
 	}
+	
 
 	let githubContext = core.getInput('context-github', { required: true })
 
@@ -3521,7 +3523,7 @@ const axios = __nccwpck_require__(56);
 		console.log("ServiceNow Status: " + response.status + "; Response: " + JSON.stringify(response.data));
 	} catch (e) {
 		changeBody = JSON.stringify(changeBody);
-		core.setFailed(`failed to create artifact package ${e} \nPayload is ${changeBody}`)
+		core.setFailed(`failed to create change ${e} \nPayload is ${changeBody}`)
 		return
 	}
 
